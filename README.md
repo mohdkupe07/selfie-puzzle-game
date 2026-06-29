@@ -200,30 +200,23 @@ ESC / Q → Exit Application
 # 🏗️ System Architecture
 
 ```
-                    main.py
-
-                       |
-
-        --------------------------------
-
-              Capture Phase
-
-                       |
-
-        Camera Module
-        Gesture Detector
-        Capture Logic
-
-
-        --------------------------------
-
-              Puzzle Phase
-
-                       |
-
-        Puzzle Generator
-        Shuffle Engine
-        Game Interface
+                         ┌──────────────┐
+                         │    main.py   │
+                         │ Entry Point  │
+                         └──────┬───────┘
+                                │
+                ┌───────────────┴───────────────┐
+                │                               │
+        ┌───────▼────────┐             ┌────────▼────────┐
+        │ Capture Phase  │             │ Puzzle Phase    │
+        └───────┬────────┘             └────────┬────────┘
+                │                               │
+     ┌──────────┼──────────┐        ┌───────────┼───────────┐
+     │          │          │        │           │           │
+┌────▼────┐ ┌───▼──────┐ ┌─▼────┐ ┌─▼────────┐ ┌─▼──────┐ ┌─▼────────┐
+│ Camera  │ │ Gesture  │ │Image │ │ Puzzle   │ │Shuffle │ │  Game    │
+│ Module  │ │Detector  │ │Capture│ │Generator │ │ Engine │ │Interface │
+└─────────┘ └──────────┘ └──────┘ └──────────┘ └────────┘ └──────────┘
 ```
 
 ---
